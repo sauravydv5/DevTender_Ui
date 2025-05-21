@@ -41,6 +41,10 @@ const NavBar = () => {
           </div>
         </div>
       </div>
+
+      <h1 className="items-center justify-center text-5xl pt-52 px-96 ">
+        This Website Is Under Devlopment
+      </h1>
     </div>
   );
 };
