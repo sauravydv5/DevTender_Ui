@@ -1,19 +1,43 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from "../utils/constant";
+import { removeUser } from "../utils/userSlice";
 
 const NavBar = () => {
   const user = useSelector((store) => store.user);
-  console.log(user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await axios.post(
+        BASE_URL + "/logout",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+      dispatch(removeUser());
+      navigate("/login");
+    } catch (err) {
+      console.error("Logout failed", err);
+    }
+  };
+
   return (
     <div>
       <div className="navbar bg-base-200">
         <div className="flex-1">
-          <a className="text-xl btn btn-ghost">🪴DevTinder</a>
+          <Link to="/" className="text-xl btn btn-ghost">
+            🪴DevTinder
+          </Link>
         </div>
         <div className="flex items-center gap-2 space-x-4">
           {user?.firstName ? (
             <div className="mx-6 dropdown dropdown-end">
-              Welcome,{user.firstName}
+              <span className="mr-2">Welcome, {user.firstName}</span>
               <div
                 tabIndex={0}
                 role="button"
@@ -21,8 +45,8 @@ const NavBar = () => {
               >
                 <div className="w-10 rounded-full">
                   <img
-                    alt="Tailwind CSS Navbar component"
-                    src={user.photoUrl}
+                    alt="User avatar"
+                    src={user.photoUrl || "https://via.placeholder.com/150"}
                   />
                 </div>
               </div>
@@ -31,20 +55,24 @@ const NavBar = () => {
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
               >
                 <li>
-                  <a className="justify-between">
+                  <Link to="/profile" className="justify-between">
                     Profile
                     <span className="badge">New</span>
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a>Settings</a>
+                  <Link to="/settings">Settings</Link>
                 </li>
                 <li>
-                  <a>Logout</a>
+                  <button onClick={handleLogout}>Logout</button>
                 </li>
               </ul>
             </div>
-          ) : null}
+          ) : (
+            <Link to="/login" className="btn">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>
