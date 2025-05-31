@@ -6,26 +6,24 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constant";
 
 const Login = () => {
-  const [email, setEmail] = useState("saurav@gmail.com");
-  const [password, setPassword] = useState("SAurav@123");
+  const [emailId, setEmail] = useState("saurav@gmail.com"); // Fixed here
+  const [password, setPassword] = useState("Saurav@123");
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleLogin = async () => {
     try {
       const res = await axios.post(
         BASE_URL + "/login",
-        {
-          email,
-          password,
-        },
+        { emailId, password }, // Fixed here
         { withCredentials: true }
       );
 
       dispatch(addUser(res.data));
-      return navigate("/");
+      navigate("/");
     } catch (err) {
-      setError(err?.response?.data || "Something Went Wrong!");
+      setError(err?.response?.data?.message || "Something Went Wrong!");
     }
   };
 
@@ -39,7 +37,7 @@ const Login = () => {
               <legend className="fieldset-legend">Email ID</legend>
               <input
                 type="text"
-                value={email}
+                value={emailId} // Fixed here
                 className="input"
                 placeholder="Enter your email"
                 onChange={(e) => setEmail(e.target.value)}

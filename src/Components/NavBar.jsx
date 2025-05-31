@@ -44,10 +44,7 @@ const NavBar = () => {
                 className="btn btn-ghost btn-circle avatar"
               >
                 <div className="w-10 rounded-full">
-                  <img
-                    alt="User avatar"
-                    src={user.photoUrl || "https://via.placeholder.com/150"}
-                  />
+                  <img alt="User avatar" src={user?.photoUrl} />
                 </div>
               </div>
               <ul
@@ -61,7 +58,7 @@ const NavBar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/settings">Settings</Link>
+                  <Link to="/connections ">Connections</Link>
                 </li>
                 <li>
                   <button onClick={handleLogout}>Logout</button>
@@ -70,7 +67,7 @@ const NavBar = () => {
             </div>
           ) : (
             <Link to="/login" className="btn">
-              Login
+              login
             </Link>
           )}
         </div>

@@ -6,6 +6,7 @@ import Body from "./Components/Body";
 import Feed from "./Components/Feed";
 import Login from "./Components/Login";
 import Profile from "./Components/Profile";
+import Connections from "./Components/Connections";
 
 const App = () => {
   return (
@@ -17,6 +18,8 @@ const App = () => {
               <Route path="/" element={<Feed />} />
               <Route path="/login" element={<Login />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/connections" element={<Connections />} />
+              <Route path="/requests" element={<Profile />} />
             </Route>
           </Routes>
         </BrowserRouter>
