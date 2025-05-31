@@ -47,6 +47,7 @@ const EditProfile = ({ user }) => {
           age,
           gender,
           about,
+          skills,
         },
         {
           withCredentials: true,
@@ -127,6 +128,21 @@ const EditProfile = ({ user }) => {
                     className="w-full max-w-xs input input-bordered"
                   />
                 </label>
+
+                {/* //skills */}
+                <label className="w-full max-w-xs my-2 form-control">
+                  <div className="label">
+                    <span className="label-text">skills</span>
+                  </div>
+                  <input
+                    type="text"
+                    value={skills}
+                    onChange={(e) => setSkills(e.target.value)}
+                    className="w-full max-w-xs input input-bordered"
+                  />
+                </label>
+
+                {/*  */}
                 <label className="w-full max-w-xs my-2 form-control">
                   <div className="label">
                     <span className="label-text">Photo URL</span>
