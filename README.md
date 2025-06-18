@@ -34,9 +34,3 @@ Send/Ignore the user card from the feed
 Signup New User
 E2E testing
 Body NavBar Route=/ => Feed Route=/login => Login Route=/connetions => Connections Router=/profile => Profile
-// "scripts": {
-  //   "dev": "npm run dev",
-  //   "build": "npm install",
-  //   "lint": "eslint .",
-  //   "preview": "vite preview"
-  // },
