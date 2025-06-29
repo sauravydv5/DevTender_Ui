@@ -11,6 +11,13 @@ import Requests from "./Components/Requests";
 import Premium from "./Components/Premium";
 import Chat from "./Components/Chat";
 
+import {
+  createPayment,
+  verifyPayment,
+  getPaymentByOrderId,
+} from "./Components/PaymentApi";
+import PaymentSuccess from "./Components/PaymentSuccess";
+
 const App = () => {
   return (
     <>
@@ -24,6 +31,8 @@ const App = () => {
               <Route path="/connections" element={<Connections />} />
               <Route path="/requests" element={<Requests />} />
               <Route path="/premium" element={<Premium />} />
+              {/* <Route path="/paymentapi" element={<PaymentApi />} /> */}
+              <Route path="/payment-success" element={<PaymentSuccess />} />
               <Route path="/chat/:targetUserId" element={<Chat />} />
             </Route>
           </Routes>
